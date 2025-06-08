@@ -23,7 +23,7 @@ register_task:
     lds r20, task_count
     ldi r21, MAX_TASKS
     cp r20, r21
-    brsh .Lexit              ; si trop de tâches, on sort
+    brsh .Lexit              ; taskcount > MAX_TASKS, exit
 
     ; Calculate address task_table : base + index * TASK_SIZE
     ldi r21, TASK_SIZE
@@ -32,7 +32,7 @@ register_task:
     ldi r31, hi8(task_table)
     add r30, r0
     adc r31, r1
-    clr r1                   ; clear high byte du produit
+    clr r1                   ; clear high byte
 
     ; loop ptr (2 octets)
     st Z+, r24
