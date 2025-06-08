@@ -17,32 +17,38 @@ This project implements a lightweight, cooperative task scheduler written in **A
 #include <Arduino.h>
 #include "scheduler.h"
 
+// Blink LED Builtin Arduino Uno (pin 13 = PB5)
 void toggle_led() {
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 }
 
-void ring_buzzer() {
+// Toggle Buzzer on pin 2 (PD2)
+void toggle_buzzer() {
     digitalWrite(2, !digitalRead(2));
 }
 
+// Print a message every 2 seconds
 void print_serial() {
-    Serial.println("Hello from scheduler!");
+    Serial.println("Hello from scheduler");
 }
 
 void setup() {
     Serial.begin(9600);
+
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(2, OUTPUT);
 
-    register_task(toggle_led, 1000);     // LED every 1s
-    register_task(ring_buzzer, 300);     // Buzzer every 300ms
-    register_task(print_serial, 2000);   // Serial print every 2s
+    // Register tasks
+    register_task(toggle_led, 1000);      // Toggle LED for 1s
+    register_task(toggle_buzzer, 300);    // Toggle buzzer for 300ms
+    register_task(print_serial, 2000);    // Print message every 2s
 
-    start_scheduler(); // Never returns
+    // Start the scheduler (infinite loop)
+    start_scheduler();
 }
 
 void loop() {
-    // Unused, needed for Arduino environment
+    // Unused but required by Arduino
 }
 ```
 
