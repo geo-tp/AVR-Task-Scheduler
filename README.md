@@ -1,10 +1,10 @@
-# AVR Task Scheduler (Assembly + Arduino)
+# AVR Task Scheduler Arduino
 
 This project implements a lightweight, cooperative task scheduler written in **AVR assembly** for **Arduino Uno**.
 
 ## Features
 
-- Written in pure AVR assembly.
+- Schedule tasks to run at specific intervals.
 - Supports up to 16 concurrent tasks.
 
 ## Requirements
